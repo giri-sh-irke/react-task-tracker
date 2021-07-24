@@ -1,8 +1,20 @@
 import { FaTimes } from "react-icons/fa";
 
-export const Task = ({ tasksDetails, deleteTask }) => {
+export const Task = ({ tasksDetails, deleteTask, onToggle }) => {
+  let reminderStyle = {};
+  if (tasksDetails.reminder) {
+    reminderStyle = { borderLeft: "5px solid green" };
+  }
+  // else{
+  //     let reminderStyle = {};
+  // }
+
   return (
-    <div className="task">
+    <div
+      style={reminderStyle}
+      onDoubleClick={() => onToggle(tasksDetails.id)}
+      className="task"
+    >
       <h3>
         {tasksDetails.text}
         <FaTimes

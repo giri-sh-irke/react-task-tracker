@@ -1,5 +1,5 @@
 // import './App.css';
-import { useState } from "react";
+import { Component, useState } from "react";
 
 import { Header } from "./components/Header";
 import { Tasks } from "./components/Tasks";
@@ -9,7 +9,7 @@ function App() {
       id: 1,
       text: "Doctors Appointment",
       day: "Feb 5th at 2:30pm",
-      reminder: true,
+      reminder: false,
     },
     {
       id: 2,
@@ -23,6 +23,14 @@ function App() {
     setTasks(tasks.filter((task) => task.id !== id));
   };
 
+  const toggleReminder = (id) => {
+    setTasks(
+      tasks.map((task) =>
+        task.id === id ? { ...task, reminder: !task.reminder } : task
+      )
+    );
+  };
+
   const addTask = () => {};
 
   return (
@@ -31,7 +39,7 @@ function App() {
       {tasks.length == 0 ? (
         <div id="noTasks">No tasks avaliable</div>
       ) : (
-        <Tasks tasks={tasks} onDelete={deleteTask} />
+        <Tasks tasks={tasks} onDelete={deleteTask} onToggle={toggleReminder} />
       )}
     </div>
   );
