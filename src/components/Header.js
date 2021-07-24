@@ -1,15 +1,21 @@
 import React from "react"; //for class components
 // import PropTypes from 'prop-types'
-
+import { Button } from "./Button";
 //Functional component
 export const Header = (props) => {
-    return(
-        <header>
-            <h1>{props.title}</h1>
-            <button></button>
-        </header>
-    )
-}
+  const handleButtonClick = () => {
+    console.log("Clicked");
+  };
+
+  return (
+    <>
+    <header className="header">
+      <h1>{props.title}</h1>
+      <Button color="green" text="Add" onClick={handleButtonClick} />
+    </header>
+    </>
+  );
+};
 
 // Header.defaultProps = {   //To add default props
 //     title: 'Task tracker'
@@ -18,7 +24,6 @@ export const Header = (props) => {
 // Header.propTypes = {  //To specify the type of props
 //     title : PropTypes.string
 // }
-
 
 //Class component syntax
 
