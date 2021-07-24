@@ -3,16 +3,16 @@ import React from "react"; //for class components
 import { Button } from "./Button";
 //Functional component
 export const Header = (props) => {
-  const handleButtonClick = () => {
-    console.log("Clicked");
-  };
-
   return (
     <>
-    <header className="header">
-      <h1>{props.title}</h1>
-      <Button color="green" text="Add" onClick={handleButtonClick} />
-    </header>
+      <header className="header">
+        <h1>{props.title}</h1>
+        <Button
+          color={props.toggleAddUI ? "black" : "green"}
+          text={props.toggleAddUI ? "Close" : "Add"}
+          onClick={props.toggleAdd}
+        />
+      </header>
     </>
   );
 };

@@ -3,6 +3,7 @@ import { Component, useState } from "react";
 
 import { Header } from "./components/Header";
 import { Tasks } from "./components/Tasks";
+import { AddTask } from "./components/AddTask";
 function App() {
   const [tasks, setTasks] = useState([
     {
@@ -19,8 +20,16 @@ function App() {
     },
   ]);
 
+  const [toggleAddUI, settoggleUI] = useState(false);
+
   const deleteTask = (id) => {
     setTasks(tasks.filter((task) => task.id !== id));
+  };
+
+  const addTask = (newTask) => {
+    const id = Math.floor(Math.random() * 10000) + 1;
+    const addThisTask = { ...newTask, id };
+    setTasks([...tasks, addThisTask]);
   };
 
   const toggleReminder = (id) => {
@@ -31,11 +40,19 @@ function App() {
     );
   };
 
-  const addTask = () => {};
+  const toogleAddForm = () => {
+    console.log("toggleAdd");
+    settoggleUI(!toggleAddUI);
+  };
 
   return (
     <div className="container">
-      <Header title="Hello ABC" />
+      <Header
+        title="Hello ABC"
+        toggleAdd={toogleAddForm}
+        toggleAddUI={toggleAddUI}
+      />
+      {toggleAddUI && <AddTask onAdd={addTask} />}
       {tasks.length == 0 ? (
         <div id="noTasks">No tasks avaliable</div>
       ) : (
