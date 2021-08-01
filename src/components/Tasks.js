@@ -1,5 +1,6 @@
 // const tasks = [] - We can use this, but it is not the part of our component
 import { Task } from "./Task";
+
 export const Tasks = ({ tasks, onDelete, addTask, onToggle }) => {
   //We use useState hook to access the states
   //Here tasks is now the part of the component
